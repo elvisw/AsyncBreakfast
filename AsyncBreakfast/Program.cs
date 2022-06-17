@@ -3,19 +3,22 @@
 using AsyncBreakfast;
 
 Coffee cup = Cook.PourCoffee();
-Console.WriteLine("coffee is ready");
+Console.WriteLine("Coffee is ready");
 
-Egg eggs = Cook.FryEggs(2);
-Console.WriteLine("eggs are ready");
+Task<Egg> eggsTask = Cook.FryEggsAsync(2);
+Task<Bacon> baconTask = Cook.FryBaconAsync(3);
+Task<Toast> toastTask = Cook.ToastBreadAsync(2);
 
-Bacon bacon = Cook.FryBacon(3);
-Console.WriteLine("bacon is ready");
-
-Toast toast = Cook.ToastBread(2);
+Toast toast = await toastTask;
 Cook.ApplyButter(toast);
 Cook.ApplyJam(toast);
-Console.WriteLine("toast is ready");
-
+Console.WriteLine("Toast is ready");
 Juice oj = Cook.PourOJ();
-Console.WriteLine("oj is ready");
+Console.WriteLine("Oj is ready");
+
+Egg eggs = await eggsTask;
+Console.WriteLine("Eggs are ready");
+Bacon bacon = await baconTask;
+Console.WriteLine("Bacon is ready");
+
 Console.WriteLine("Breakfast is ready!");
