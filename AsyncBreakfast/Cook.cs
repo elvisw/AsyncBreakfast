@@ -72,5 +72,14 @@ namespace AsyncBreakfast
             Console.WriteLine("Pouring coffee");
             return new Coffee();
         }
+
+        public static async Task<Toast> MakeToastWithButterAndJamAsync(int number)
+        {
+            var toast = await ToastBreadAsync(number);
+            ApplyButter(toast);
+            ApplyJam(toast);
+
+            return toast;
+        }
     }
 }
